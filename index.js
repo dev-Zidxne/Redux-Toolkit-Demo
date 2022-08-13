@@ -2,6 +2,7 @@ const redux = require("redux");
 // const reduxLogger = require('redux-logger')
 
 const createStore = redux.createStore;
+const bindActionCreators = redux.bindActionCreators;
 
 const CAKE_ORDERED = "CAKE_ORDERED";
 const CAKE_RESTOCKED = "CAKE_RESTOCKED";
@@ -52,9 +53,15 @@ const unsubscribe = store.subscribe(() =>
   console.log("Update state", store.getState())
 );
 
-store.dispatch(orderCake());
-store.dispatch(orderCake());
-store.dispatch(orderCake());
-store.dispatch(restockCake(payload));
+// store.dispatch(orderCake());
+// store.dispatch(orderCake());
+// store.dispatch(orderCake());
+// store.dispatch(restockCake(payload));
 
+const actions = bindActionCreators({ orderCake, restockCake }, store.dispatch);
+
+actions.orderCake();
+actions.orderCake();
+actions.orderCake();
+actions.restockCake(3);
 unsubscribe();
