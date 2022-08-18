@@ -1,5 +1,4 @@
-const { cakeActions } = require("../cake/cakeSlice");
-
+import { createSlice } from "@reduxjs/toolkit";
 import { ordered as cakeOrdered } from "../cake/cakeSlice";
 const initialState = {
   numOfIcecreams: 20,
@@ -29,4 +28,4 @@ const icecreamSlice = createSlice({
 });
 
 export default icecreamSlice.reducer;
-module.exports.icecreamActions = icecreamSlice.actions;
+export const { ordered, restocked } = icecreamSlice.actions;
